@@ -1,37 +1,37 @@
-# AutismSupport – Mom Connect (Frontend)
+# 🧩 AutismSupport – Mom Connect (Frontend)
 
 ![React](https://img.shields.io/badge/React-18-blue)
 ![Vite](https://img.shields.io/badge/Vite-Fast-yellow)
 ![Tailwind](https://img.shields.io/badge/TailwindCSS-3-38bdf8)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-**AI-Powered Support Platform for Mothers of Children with Autism**
+**🤖 AI-Powered Support Platform for Mothers of Children with Autism**
 
 🌐 **Live Demo:** https://auticare-mom-connect.lovable.app  
-🎯 **Mobile-first • RTL (Arabic) • Built with React & Tailwind CSS**
+📱 **Mobile-first • RTL (Arabic) • Built with React & Tailwind CSS**
 
 AutismSupport Mom Connect is a **supportive digital platform** designed to help mothers **track, understand, and support their autistic child's development** through daily insights, community interaction, and AI-assisted guidance.
 
-This repository contains the **frontend application** that powers the user interface of the platform.
+This repository contains the **frontend application** that powers the **user interface** of the platform.
 
 ---
 
-## Project Overview
+## 📖 Project Overview
 
 AutismSupport is a web platform created to support parents of children with **Autism Spectrum Disorder (ASD)**.
 
 The system helps parents:
 
-- Track their child’s daily behaviour
-- Access educational and supportive resources
-- Connect with a moderated community of mothers
-- Receive structured insights about their child’s development
+- 📊 Track their child’s daily behaviour
+- 📚 Access educational and supportive resources
+- 🤝 Connect with a moderated community of mothers
+- 🧠 Receive structured insights about their child’s development
 
 The goal is to provide **practical daily support while maintaining privacy, empathy, and safety**.
 
 ---
 
-## Core Platform Features
+## ⭐ Core Platform Features
 
 | Feature                  | Description                                                                               |
 | :----------------------- | :---------------------------------------------------------------------------------------- |
@@ -47,11 +47,9 @@ The goal is to provide **practical daily support while maintaining privacy, empa
 
 ---
 
-## UI Overview
+## 🎨 UI Overview
 
-The current landing page reflects the platform’s core values:
-
-**Trust • Simplicity • Empathy**
+The current landing page reflects the platform’s core values: **Trust • Simplicity • Empathy**
 
 The interface is designed to be:
 
@@ -68,9 +66,7 @@ Main UI sections include:
 
 ---
 
-## Technology Stack
-
-## Technology Stack
+## 🛠 Technology Stack
 
 | Layer                | Technology                                       | Purpose                                                                                |
 | :------------------- | :----------------------------------------------- | :------------------------------------------------------------------------------------- |
@@ -87,7 +83,7 @@ Main UI sections include:
 
 ---
 
-## Folder Structure
+## 📁 Folder Structure
 
 ```bash
 Autism-Front/
@@ -128,9 +124,9 @@ Autism-Front/
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
-### Prerequisites
+### 📋 Prerequisites
 
 - Node.js **18+**
 - npm
@@ -139,9 +135,7 @@ Autism-Front/
 Backend repository:  
 https://github.com/fou1100ouacus/AutismSupport
 
----
-
-### Installation
+### ⚙ Installation
 
 #### 1. Clone the repository
 
@@ -178,9 +172,7 @@ Open in browser:
 http://localhost:5173
 ```
 
----
-
-### Build for Production
+### 📦 Build for Production
 
 ```bash
 npm run build
@@ -189,7 +181,7 @@ npm run preview
 
 ---
 
-## Security & Privacy
+## 🔐 Security & Privacy
 
 AutismSupport prioritizes the **privacy and safety of its users**.
 
@@ -200,7 +192,7 @@ AutismSupport prioritizes the **privacy and safety of its users**.
 
 ---
 
-## Disclaimer
+## ⚠ Disclaimer
 
 This platform provides **support and informational resources** for parents of children with Autism Spectrum Disorder (ASD).
 
@@ -210,7 +202,7 @@ Parents should always consult qualified healthcare professionals regarding their
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome.
 
@@ -221,6 +213,6 @@ Contributions are welcome.
 
 ---
 
-## License
+## 📜 License
 
 This project is licensed under the **MIT License**.
