@@ -29,6 +29,7 @@ import Report from "./pages/report/Report";
 // Main authenticated pages
 import Dashboard from "./pages/dashboard/Dashboard";
 import Community from "./pages/community/Community";
+import SmartSupport from "./pages/chat/SmartSupport";
 import PostDetails from "./pages/community/PostDetails";
 import Learning from "./pages/learning/Learning";
 import ResourceDetails from "./pages/learning/ResourceDetails";
@@ -79,6 +80,7 @@ function App() {
                       {/* Main app pages */}
                       <Route path="/dashboard" element={<Dashboard />} />
                       <Route path="/community" element={<Community />} />
+                      <Route path="/chat" element={<SmartSupport />} />
                       <Route path="/community/:id" element={<PostDetails />} />
                       <Route path="/learning" element={<Learning />} />
                       <Route
