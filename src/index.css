@@ -38,8 +38,8 @@
   --info: #3b82f6;
 
   /* Backgrounds */
-   --primary-light-bg: #ecfdf5; /* خلفية خفيفة للبوت */
-  --primary-dark-bg: #047857;  /* خلفية قوية للمستخدم */
+  --primary-light-bg: #ecfdf5;
+  --primary-dark-bg: #047857; 
   --bg-page: #f9fafb;
   --bg-card: #ffffff;
   --bg-hover: #f3f4f6;
