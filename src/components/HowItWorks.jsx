@@ -1,67 +1,64 @@
-
-
 export default function HowItWorks() {
   const steps = [
     {
-      number: "١",
-      title: "إنشاء ملف الطفل",
-      description: "أضيفي معلومات طفلك الأساسية والملاحظات السلوكية"
+      number: "1",
+      title: "Create Child Profile",
+      description: "Add your child's basic information and behavioral observations."
     },
     {
-      number: "٢",
-      title: "إجراء التقييم",
-      description: "أجيبي على أسئلة سلوكية بسيطة ومصممة بعناية"
+      number: "2",
+      title: "Take the Screening",
+      description: "Answer simple, carefully designed behavioral questions."
     },
     {
-      number: "٣",
-      title: "استلام التقرير",
-      description: "احصلي على تقرير تفصيلي مع توصيات مخصصة"
+      number: "3",
+      title: "Receive the Report",
+      description: "Get a detailed report along with personalized recommendations."
     },
     {
-      number: "٤",
-      title: "متابعة وتطوير",
-      description: "تابعي التقدم مع دعم مستمر من مجتمعنا"
+      number: "4",
+      title: "Track & Develop",
+      description: "Monitor progress with continuous support from our community."
     }
   ];
 
   return (
-    // الخلفية السماوية الثابتة مع مسافات السكشن الأصلية
-    <section className="w-full bg-[#f5fffd] py-20 px-4 md:px-8 my-16" dir="rtl">
+    <section className="w-full bg-primary-50 py-20 px-4 md:px-8 my-16" dir="ltr">
       <div className="max-w-5xl mx-auto">
         
-        {/* العناوين الرئيسية */}
+        {/* Section Headings */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1e293b] mb-4">
-            كيف يعمل أوتيكير؟
+          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+            How Auticare Works
           </h2>
-          <p className="text-slate-500 text-base md:text-lg max-w-2xl mx-auto font-medium">
-            أربع خطوات بسيطة للحصول على تقييم شامل ودعم مستمر
+          <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto font-medium">
+            Four simple steps to get a comprehensive screening and ongoing support
           </p>
         </div>
 
-        {/* حاوية الخطوات والخط الواصل */}
+        {/* Steps Container & Connecting Line */}
         <div className="relative w-full">
           
-          {/* الخط الأفقي الواصل ويمر خلف الدوائر مباشرة بدون تداخل */}
-          <div className="hidden md:block absolute top-8 left-[12%] right-[12%] h-[2px] bg-gray-200/50" />
+          {/* Horizontal Connecting Line */}
+          <div className="hidden md:block absolute top-8 left-[12%] right-[12%] h-[2px] bg-gray-200/60" />
 
-          {/* شبكة الخطوات الأربعة (تم تقريب المسافات باستخدام gap-4) */}
+          {/* Four Steps Grid */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-4 relative z-10">
             {steps.map((step, index) => (
               <div key={index} className="flex flex-col items-center text-center">
                 
-                {/* الدائرة الرقمية: تم إزالة الـ border تماماً لتكون خضراء سادة صافية */}
-                <div className="w-16 h-16 rounded-full bg-[#00b686] text-white flex items-center justify-center text-xl font-bold mb-6 shadow-sm">
+                {/* Step Number Circle */}
+                <div className="w-16 h-16 rounded-full bg-primary-500 text-white flex items-center justify-center text-xl font-bold mb-6 shadow-sm">
                   {step.number}
                 </div>
 
-                {/* عنوان الخطوة */}
-                <h3 className="text-xl font-bold text-[#1e293b] mb-3">
+                {/* Step Title */}
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {step.title}
                 </h3>
 
-                {/* وصف الخطوة */}
-                <p className="text-slate-400 text-[14px] leading-relaxed max-w-[210px]">
+                {/* Step Description */}
+                <p className="text-gray-500 text-[14px] leading-relaxed max-w-[210px]">
                   {step.description}
                 </p>
 

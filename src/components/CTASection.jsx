@@ -1,12 +1,11 @@
-
 export default function CTASection() {
   return (
-    <section className="w-full bg-white py-12 px-4 md:px-8" dir="rtl">
+    <section className="w-full bg-white py-12 px-4 md:px-8" dir="ltr">
       <div className="max-w-6xl mx-auto">
-        {/* البانر الأخضر الرئيسي بحواف دائرية كبيرة */}
-        <div className="bg-[#00b686] rounded-[24px] py-16 px-6 text-center flex flex-col items-center justify-center shadow-sm">
+        {/* Main Banner */}
+        <div className="bg-primary-500 rounded-[24px] py-16 px-6 text-center flex flex-col items-center justify-center shadow-sm transition-colors duration-300">
           
-          {/* أيقونة القلب في الأعلى */}
+          {/* Heart Icon */}
           <div className="text-white mb-4">
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -24,19 +23,19 @@ export default function CTASection() {
             </svg>
           </div>
 
-          {/* العنوان الرئيسي للبانر */}
+          {/* Main Title */}
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-wide">
-            ابدأي رحلتك اليوم
+            Start Your Journey Today
           </h2>
 
-          {/* الوصف المكتوب */}
+          {/* Description */}
           <p className="text-white/90 text-base md:text-lg font-normal mb-8 max-w-2xl leading-relaxed">
-            انضمي إلى آلاف الأمهات اللاتي وجدن الدعم والتوجيه في أوتيكير
+            Join thousands of mothers who found support, guidance, and community at Auticare.
           </p>
 
-          {/* زر التسجيل الأبيض الانسيابي */}
-          <button className="bg-white text-[#00b686] font-bold text-lg px-10 py-3.5 rounded-[16px] shadow-md hover:bg-gray-55 transition-all duration-300">
-            سجلي الآن مجاناً
+          {/* Registration Button */}
+          <button className="bg-white text-primary-500 font-bold text-lg px-10 py-3.5 rounded-[16px] shadow-md hover:bg-gray-50 transition-all duration-300">
+            Register Now for Free
           </button>
 
         </div>
