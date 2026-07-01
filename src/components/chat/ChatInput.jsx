@@ -1,45 +1,51 @@
 import { LuSend } from "react-icons/lu";
+
+import Button from "../ui/Button";
 import Input from "../ui/Input";
 
 function ChatInput({
   value,
   onChange,
   onSend,
+  loading = false,
 }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!value.trim() || loading) return;
+
+    onSend();
+  };
+
   return (
     <form
-      onSubmit={onSend}
-      className="p-4 border-t bg-[var(--bg-card)] border-[var(--border-light)]"
+      onSubmit={handleSubmit}
+      className="
+        border-t
+        border-[var(--border-light)]
+        bg-[var(--bg-card)]
+        p-4
+      "
     >
-      <div className="flex gap-2">
+      <div className="flex gap-3">
+
         <Input
           value={value}
-          onChange={(e) =>
-            onChange(e.target.value)
-          }
-          placeholder="Type your message..."
-          className="h-12"
+          placeholder="Ask anything about autism..."
+          onChange={(e) => onChange(e.target.value)}
+          disabled={loading}
+          className="flex-1"
         />
 
-        <button
+        <Button
           type="submit"
-          disabled={!value.trim()}
-          className="
-            w-12
-            h-12
-            rounded-lg
-            bg-[var(--primary-500)]
-            text-[var(--white)]
-            flex
-            items-center
-            justify-center
-            hover:bg-[var(--primary-600)]
-            disabled:opacity-50
-            disabled:cursor-not-allowed
-          "
+          disabled={!value.trim() || loading}
+          loading={loading}
+          className="px-4"
         >
           <LuSend size={18} />
-        </button>
+        </Button>
+
       </div>
     </form>
   );
