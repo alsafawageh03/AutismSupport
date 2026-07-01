@@ -1,110 +1,92 @@
-import { useState } from "react";
+import { FaPaperPlane } from "react-icons/fa6";
+
 import Card from "../ui/Card";
-import Avatar from "../ui/Avatar";
+import Input from "../ui/Input";
 import Button from "../ui/Button";
-import Textarea from "../ui/Textarea";
-import InfoBadge from "../ui/InfoBadge";
+import EmptyState from "../ui/EmptyState";
 
-import { LuSend, LuMessageCircle } from "react-icons/lu";
+import CommentCard from "./CommentCard";
 
-function CommentSection({ comments = [], onAddComment }) {
-  const [text, setText] = useState("");
+function CommentSection({
+  postId,
+  comments = [],
+  inputValue,
+  onInputChange,
+  onReact,
+  onSendComment,
+  onDeleteComment,
+  onReportComment,
+}) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const safeComments = Array.isArray(comments) ? comments : [];
+    if (!inputValue.trim()) return;
 
-  const handleSend = () => {
-    if (!text.trim()) return;
-
-    onAddComment?.(text);
-    setText("");
+    onSendComment(postId);
   };
 
   return (
-    <Card className="mt-4 p-4 space-y-4">
-      {/* HEADER */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 text-emerald-700 font-semibold">
-          <LuMessageCircle />
-          Comments
-        </div>
-
-        <InfoBadge>
-          {comments.length}
-        </InfoBadge>
-      </div>
-
-      {/* INPUT */}
-      <div className="flex gap-3 items-start">
-        <Avatar
-          src="https://i.pravatar.cc/100"
-          size="sm"
+    <Card
+      padding="md"
+      className="comment-section"
+      style={{
+        marginTop: "1rem",
+        borderTop: "1px solid var(--color-border)",
+      }}
+    >
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "0.75rem",
+          marginBottom: "1rem",
+        }}
+      >
+        <Input
+          value={inputValue}
+          onChange={(e) => onInputChange(postId, e.target.value)}
+          placeholder="Write a comment..."
+          fullWidth
         />
 
-        <div className="flex-1 space-y-2">
-          <Textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Write a comment..."
-            className="min-h-[80px]"
-          />
+        <Button
+          type="submit"
+          variant="primary"
+          size="icon"
+          disabled={!inputValue.trim()}
+          aria-label="Send comment"
+        >
+          <FaPaperPlane />
+        </Button>
+      </form>
 
-          <div className="flex justify-end">
-            <Button
-              onClick={handleSend}
-              className={`flex items-center gap-2 ${
-                !text.trim() ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-              disabled={!text.trim()}
-            >
-              <LuSend />
-              Send
-            </Button>
-          </div>
+      {comments.length === 0 ? (
+        <EmptyState
+          title="No comments yet"
+          description="Be the first to leave a comment."
+        />
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.75rem",
+          }}
+        >
+          {comments.map((comment) => (
+            <CommentCard
+              key={comment.id}
+              comment={comment}
+              onReact={onReact}
+              onDeleteComment={onDeleteComment}
+              onReportComment={onReportComment}
+            />
+          ))}
         </div>
-      </div>
-
-      {/* COMMENTS LIST */}
-      <div className="space-y-3">
-        {comments.length === 0 ? (
-          <p className="text-gray-400 text-sm text-center py-3">
-            No comments yet. Be the first to comment 
-          </p>
-        ) : (
-            
-          safeComments.map((c, idx) => (
-            <div
-              key={idx}
-              className="flex gap-3 p-3 rounded-xl bg-gray-50 border"
-            >
-              <Avatar
-                src={c.user?.avatar}
-                size="sm"
-              />
-
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <p className="font-medium text-sm text-gray-800">
-                    {c.user?.name || "User"}
-                  </p>
-
-                  {c.user?.role && (
-                    <InfoBadge>
-                      {c.user.role}
-                    </InfoBadge>
-                  )}
-                </div>
-
-                <p className="text-sm text-gray-600 mt-1">
-                  {c.text}
-                </p>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
+      )}
     </Card>
   );
 }
 
 export default CommentSection;
-

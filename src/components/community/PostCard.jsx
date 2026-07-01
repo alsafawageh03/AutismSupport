@@ -1,134 +1,171 @@
-import { useEffect, useState, useRef } from "react";
+import { useCallback } from "react";
+
+import {
+  FaThumbsUp,
+  FaRegComment,
+  FaComment,
+  FaFlag,
+  FaTrash,
+  FaEllipsisVertical,
+} from "react-icons/fa6";
+
 import Card from "../ui/Card";
 import Button from "../ui/Button";
 import Avatar from "../ui/Avatar";
+import DropdownMenu from "../ui/DropdownMenu";
 
 import CommentSection from "./CommentSection";
-import PostReport from "./PostReport";
 
-import { LuHeart, LuMessageCircle, LuShare2 } from "react-icons/lu";
+function PostCard({
+  post,
+  activePostComments,
+  commentInputs,
+  onReact,
+  onToggleComments,
+  onSendComment,
+  onInputChange,
+  onDeletePost,
+  onReportPost,
+  onDeleteComment,
+  onReportComment,
+}) {
+  const postId = post?.id;
 
-function PostCard({ post }) {
-  const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState(post.likes || 0);
+  const postComments = activePostComments?.[postId] || [];
+  const isCommentsOpen = Boolean(activePostComments?.[postId]);
+  const currentInputValue = commentInputs?.[postId] || "";
 
-  const [comments, setComments] = useState(() => {
-    return Array.isArray(post?.comments) ? post.comments : [];
-  });
-  const [showComments, setShowComments] = useState(false);
+  const imageUrl = post?.photoUrl
+    ? `https://autism.runasp.net${post.photoUrl}`
+    : null;
 
-  const handleLike = () => {
-    setLiked((prev) => !prev);
-    setLikes((prev) => (liked ? prev - 1 : prev + 1));
-  };
+  const handleImageError = useCallback((e) => {
+    e.target.style.display = "none";
+  }, []);
 
-  const toggleComments = () => {
-    setShowComments((prev) => !prev);
-  };
+  const handleReport = useCallback(() => {
+    const reason = prompt("Why are you reporting this post?");
+    if (reason?.trim()) {
+      onReportPost?.(postId, reason.trim());
+    }
+  }, [onReportPost, postId]);
 
-  const handleAddComment = (text) => {
-    const newComment = {
-      id: Date.now(),
-      text,
-      user: {
-        name: "You",
-        avatar: "https://i.pravatar.cc/100",
-      },
-    };
-    console.log("ADDING COMMENT:", text);
-    setComments((prev) => {
-      if (!Array.isArray(prev)) return [newComment];
-      return [...prev, newComment];
-    });
-  };
+  const handleDelete = useCallback(() => {
+    if (window.confirm("Delete this post?")) {
+      onDeletePost?.(postId);
+    }
+  }, [onDeletePost, postId]);
 
-  const handleReport = () => {
-    console.log("Report Post");
-    setOpen(false);
-  };
+  const handleLike = useCallback(() => {
+    onReact?.(postId, "post");
+  }, [onReact, postId]);
+
+const handleToggleComments = useCallback(() => {
+  console.log(post.id, post.content);
+  onToggleComments?.(postId);
+}, [onToggleComments, postId]);
 
   return (
-    <div className="mx-auto w-full max-w-2xl px-4">
+    <Card className="post-card" padding="lg">
+      {/* Header */}
+      <div className="flex items-start justify-between">
+        <div className="flex items-center gap-3">
+          <Avatar
+            src={post?.authorPhoto}
+            alt={post?.authorName}
+            name={post?.authorName}
+          />
 
-      <Card className="mt-4 p-4 space-y-4 bg-[var(--bg-card)] rounded-2xl shadow-sm border border-[var(--border-light)]">
+          <div>
+            <h4 style={{ margin: 0, color: "var(--text-primary)" }}>
+              {post?.authorName}
+            </h4>
 
-        {/* HEADER */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Avatar src={post.user.avatar} alt={post.user.name} />
-
-            <div>
-              <p className="font-semibold text-[var(--gray-800)] text-sm">
-                {post.user.name}
-              </p>
-              <p className="text-xs text-[var(--text-secondary)]">
-                {post.createdAt}
-              </p>
-            </div>
+            <small style={{ color: "var(--text-secondary)" }}>
+              {post?.createdAt}
+            </small>
           </div>
-          <PostReport/>
         </div>
 
-        {/* CONTENT */}
-        <div className="space-y-2">
-          {post.title && (
-            <h3 className="font-semibold text-[var(--text-primary)]">
-              {post.title}
-            </h3>
-          )}
+        <DropdownMenu
+          trigger={
+            <Button variant="ghost" size="icon">
+              <FaEllipsisVertical />
+            </Button>
+          }
+          items={[
+            {
+              label: "Report",
+              icon: <FaFlag />,
+              danger: true,
+              onClick: handleReport,
+            },
+            {
+              label: "Delete",
+              icon: <FaTrash />,
+              danger: true,
+              onClick: handleDelete,
+            },
+          ]}
+        />
+      </div>
 
-          <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-            {post.text || post.content}
-          </p>
-        </div>
+      {/* Content */}
+      <p
+        style={{
+          marginTop: "1rem",
+          lineHeight: 1.7,
+          color: "var(--text-primary)",
+        }}
+      >
+        {post?.content}
+      </p>
 
-        {/* ACTIONS */}
-        <div className="flex gap-2 items-center justify-around pt-2 border-t border-[var(--border-light)]">
-
-  
-
-            {/* LIKE */}
-            <button
-              onClick={handleLike}
-              className={`flex items-center gap-1 text-sm transition ${liked
-                  ? "text-[var(--danger)]"
-                  : "text-[var(--text-secondary)]"
-                }`}
-            >
-              <LuHeart size={18} />
-              {likes}
-            </button>
-
-            {/* COMMENT */}
-            <button
-              onClick={toggleComments}
-              className={`flex items-center gap-1 text-sm transition hover:text-emerald-600 ${showComments
-                  ? "text-emerald-600"
-                  : "text-[var(--text-secondary)]"
-                }`}
-            >
-              <LuMessageCircle size={18} />
-              {comments.length}
-            </button>
-
-
-        </div>
-
-      </Card>
-
-      {/* COMMENT SECTION */}
-      {showComments && (
-        <CommentSection
-          comments={comments}
-          onAddComment={handleAddComment}
+      {/* Image */}
+      {imageUrl && (
+        <img
+          src={imageUrl}
+          alt="Post"
+          onError={handleImageError}
+          className="post-image"
         />
       )}
 
+      {/* Actions */}
+      <div
+        className="flex items-center gap-2"
+        style={{
+          marginTop: "1rem",
+          borderTop: "1px solid var(--border-color)",
+          paddingTop: "1rem",
+        }}
+      >
+        <Button variant="ghost" size="sm" onClick={handleLike}>
+          <FaThumbsUp />
+          Like ({post?.reactionsCount ?? 0})
+        </Button>
 
-    </div>
+        <Button variant="ghost" size="sm" onClick={handleToggleComments}>
+          {isCommentsOpen ? <FaComment /> : <FaRegComment />}
+          Comments ({post?.commentsCount ?? postComments.length})
+        </Button>
+      </div>
+
+      {/* Comments */}
+      {isCommentsOpen && (
+        <CommentSection
+  postId={postId}
+  comments={postComments}
+  inputValue={currentInputValue}
+  onInputChange={onInputChange}
+  onReact={onReact}
+  onSendComment={onSendComment}
+  onDeleteComment={onDeleteComment}
+  onReportComment={onReportComment}
+/>
+      )}
+    </Card>
   );
 }
 
 export default PostCard;
-
-
