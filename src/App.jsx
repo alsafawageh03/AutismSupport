@@ -28,11 +28,14 @@ import Report from "./pages/report/Report";
 
 import Dashboard from "./pages/dashboard/Dashboard";
 import Community from "./pages/community/Community";
-import SmartSupport from "./pages/chat/SmartSupport";
-import PostDetails from "./pages/community/PostDetails";
+import Chatbot from "./pages/chat/Chatbot";
+import MotionAnalysis from "./pages/motionAnalysis/MotionAnalysis";
 import Learning from "./pages/learning/Learning";
 import ResourceDetails from "./pages/learning/ResourceDetails";
 import Profile from "./pages/profile/Profile";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import AdminRoute from "./routes/AdminRoute";
+import Moderation from "./pages/community/Moderation";
 
 function App() {
   return (
@@ -68,8 +71,12 @@ function App() {
                       <Route path="/daily-insights" element={<DailyInsights />} />
                       <Route path="/progress-tracking" element={<ProgressTracking />} />
                       <Route path="/community" element={<Community />} />
-                      <Route path="/chat" element={<SmartSupport />} />
-                      <Route path="/community/:id" element={<PostDetails />} />
+                      {/* <Route element={<AdminRoute/>}> */}
+                        <Route path="/admin/moderation" element={<Moderation />} /> 
+                        <Route path="/admin/knowledgebase" element={<AdminDashboard />} /> 
+                        {/* </Route> */}
+                      <Route path="/chatbot" element={<Chatbot />} />
+                      <Route path="/motionAnalysis" element={<MotionAnalysis />} />
                       <Route path="/learning" element={<Learning />} />
                       <Route path="/learning/:id" element={<ResourceDetails />} />
                       <Route path="/profile" element={<Profile />} />

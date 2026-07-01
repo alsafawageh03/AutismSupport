@@ -69,3 +69,48 @@ body {
 }
 
 
+.markdown-content p {
+  margin-bottom: 0.75rem;
+  white-space: pre-wrap; /* Keeps line breaks from the database intact */
+}
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+.markdown-content ul {
+  list-style-type: disc;
+  margin-left: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ==============================================
+   Chatbot Splash Screen
+   Displays the chatbot logo with a centered layout and
+   supports the splash animation (fade-in + zoom effect)
+   before navigating to the chatbot page.
+===============================================*/
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.splash-screen img {
+  width: min(350px, 70vw);
+  will-change: transform;
+}
+
+.chat-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chat-visible {
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+/* */
