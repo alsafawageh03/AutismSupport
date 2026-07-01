@@ -8,7 +8,7 @@ function Avatar({ src, alt = "User", size = "md" }) {
 
   return (
     <img
-      src={src || "https://via.placeholder.com/150"}
+      src={src || "/default-avatar.png"}
       alt={alt}
       className={`
         ${sizes[size]}
